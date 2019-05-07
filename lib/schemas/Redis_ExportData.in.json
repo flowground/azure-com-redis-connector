@@ -1,0 +1,43 @@
+{
+    "type": "object",
+    "properties": {
+        "resourceGroupName": {
+            "required": true,
+            "type": "string"
+        },
+        "name": {
+            "required": true,
+            "type": "string"
+        },
+        "subscriptionId": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "description": "Parameters for Redis export operation.",
+            "properties": {
+                "container": {
+                    "description": "Container name to export to.",
+                    "type": "string"
+                },
+                "format": {
+                    "description": "File format.",
+                    "type": "string"
+                },
+                "prefix": {
+                    "description": "Prefix to use for exported files.",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "container",
+                "prefix"
+            ],
+            "type": "object"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

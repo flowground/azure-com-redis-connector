@@ -1,0 +1,42 @@
+{
+    "type": "object",
+    "properties": {
+        "resourceGroupName": {
+            "required": true,
+            "type": "string"
+        },
+        "name": {
+            "required": true,
+            "type": "string"
+        },
+        "subscriptionId": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "description": "Specifies which Redis access keys to reset.",
+            "properties": {
+                "keyType": {
+                    "description": "The Redis access key to regenerate.",
+                    "enum": [
+                        "Primary",
+                        "Secondary"
+                    ],
+                    "type": "string",
+                    "x-ms-enum": {
+                        "modelAsString": false,
+                        "name": "RedisKeyType"
+                    }
+                }
+            },
+            "required": [
+                "keyType"
+            ],
+            "type": "object"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

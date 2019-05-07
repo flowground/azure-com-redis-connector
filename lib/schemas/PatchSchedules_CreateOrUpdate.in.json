@@ -1,0 +1,119 @@
+{
+    "type": "object",
+    "properties": {
+        "resourceGroupName": {
+            "required": true,
+            "type": "string"
+        },
+        "name": {
+            "required": true,
+            "type": "string"
+        },
+        "default": {
+            "required": true,
+            "type": "string",
+            "enum": [
+                "default"
+            ]
+        },
+        "subscriptionId": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "allOf": [
+                {
+                    "allOf": [
+                        {
+                            "description": "The Resource definition.",
+                            "properties": {
+                                "id": {
+                                    "description": "Resource ID.",
+                                    "readOnly": true,
+                                    "type": "string"
+                                },
+                                "name": {
+                                    "description": "Resource name.",
+                                    "readOnly": true,
+                                    "type": "string"
+                                },
+                                "type": {
+                                    "description": "Resource type.",
+                                    "readOnly": true,
+                                    "type": "string"
+                                }
+                            },
+                            "x-ms-azure-resource": true,
+                            "type": "object"
+                        }
+                    ],
+                    "description": "The resource model definition for a ARM proxy resource. It will have everything other than required location and tags"
+                }
+            ],
+            "description": "Response to put/get patch schedules for Redis cache.",
+            "properties": {
+                "properties": {
+                    "description": "List of patch schedules for a Redis cache.",
+                    "x-ms-client-flatten": true,
+                    "properties": {
+                        "scheduleEntries": {
+                            "description": "List of patch schedules for a Redis cache.",
+                            "items": {
+                                "description": "Patch schedule entry for a Premium Redis Cache.",
+                                "properties": {
+                                    "dayOfWeek": {
+                                        "description": "Day of the week when a cache can be patched.",
+                                        "enum": [
+                                            "Monday",
+                                            "Tuesday",
+                                            "Wednesday",
+                                            "Thursday",
+                                            "Friday",
+                                            "Saturday",
+                                            "Sunday",
+                                            "Everyday",
+                                            "Weekend"
+                                        ],
+                                        "type": "string",
+                                        "x-ms-enum": {
+                                            "modelAsString": false,
+                                            "name": "DayOfWeek"
+                                        }
+                                    },
+                                    "maintenanceWindow": {
+                                        "description": "ISO8601 timespan specifying how much time cache patching can take. ",
+                                        "format": "duration",
+                                        "type": "string"
+                                    },
+                                    "startHourUtc": {
+                                        "description": "Start hour after which cache patching can start.",
+                                        "format": "int32",
+                                        "type": "integer"
+                                    }
+                                },
+                                "required": [
+                                    "dayOfWeek",
+                                    "startHourUtc"
+                                ],
+                                "type": "object"
+                            },
+                            "type": "array",
+                            "x-ms-client-name": "ScheduleEntries"
+                        }
+                    },
+                    "required": [
+                        "scheduleEntries"
+                    ]
+                }
+            },
+            "required": [
+                "properties"
+            ],
+            "type": "object"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

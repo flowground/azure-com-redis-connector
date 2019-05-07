@@ -1,0 +1,492 @@
+{
+    "title": "RedisManagementClient",
+    "description": "REST API for Azure Redis Cache Service.",
+    "docsUrl": "",
+    "url": "https://api.apis.guru/v2/specs/azure.com/redis/2018-03-01/swagger.json",
+    "envVars": {
+        "OAUTH_CLIENT_ID": {
+            "description": "OAuth Client ID"
+        },
+        "OAUTH_CLIENT_SECRET": {
+            "description": "OAuth Client Secret"
+        }
+    },
+    "credentials": {
+        "fields": {
+            "server": {
+                "label": "Server",
+                "viewClass": "SelectView",
+                "model": [
+                    "https://management.azure.com/",
+                    "--- Custom URL"
+                ],
+                "required": true
+            },
+            "otherServer": {
+                "label": "Custom Server URL",
+                "viewClass": "TextFieldView"
+            },
+            "azure_auth": {
+                "label": "Azure Active Directory OAuth2 Flow.",
+                "viewClass": "OAuthFieldView"
+            }
+        },
+        "oauth2": {
+            "client_id": "{{OAUTH_CLIENT_ID}}",
+            "client_secret": "{{OAUTH_CLIENT_SECRET}}",
+            "auth_uri": "https://login.microsoftonline.com/common/oauth2/authorize"
+        }
+    },
+    "triggers": {
+        "startFlow": {
+            "main": "./lib/triggers/startFlow.js",
+            "type": "polling",
+            "title": "Start Flow",
+            "fields": {}
+        }
+    },
+    "actions": {
+        "Operations_List": {
+            "main": "./lib/actions/Operations_List.js",
+            "title": "Lists all of the available REST API operations of the Microsoft.Cache provider.",
+            "description": "Lists all of the available REST API operations of the Microsoft.Cache provider.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Operations_List.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Redis_CheckNameAvailability": {
+            "main": "./lib/actions/Redis_CheckNameAvailability.js",
+            "title": "Checks that the redis cache name is valid and is not already in use.",
+            "description": "Checks that the redis cache name is valid and is not already in use.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Redis_CheckNameAvailability.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Redis_List": {
+            "main": "./lib/actions/Redis_List.js",
+            "title": "Gets all Redis caches in the specified subscription.",
+            "description": "Gets all Redis caches in the specified subscription.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Redis_List.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Redis_ListByResourceGroup": {
+            "main": "./lib/actions/Redis_ListByResourceGroup.js",
+            "title": "Lists all Redis caches in a resource group.",
+            "description": "Lists all Redis caches in a resource group.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Redis_ListByResourceGroup.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "FirewallRules_ListByRedisResource": {
+            "main": "./lib/actions/FirewallRules_ListByRedisResource.js",
+            "title": "Gets all firewall rules in the specified redis cache.",
+            "description": "Gets all firewall rules in the specified redis cache.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/FirewallRules_ListByRedisResource.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "FirewallRules_Delete": {
+            "main": "./lib/actions/FirewallRules_Delete.js",
+            "title": "Deletes a single firewall rule in a specified redis cache.",
+            "description": "Deletes a single firewall rule in a specified redis cache.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/FirewallRules_Delete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "FirewallRules_Get": {
+            "main": "./lib/actions/FirewallRules_Get.js",
+            "title": "Gets a single firewall rule in a specified redis cache.",
+            "description": "Gets a single firewall rule in a specified redis cache.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/FirewallRules_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "FirewallRules_CreateOrUpdate": {
+            "main": "./lib/actions/FirewallRules_CreateOrUpdate.js",
+            "title": "Create or update a redis cache firewall rule",
+            "description": "Create or update a redis cache firewall rule",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/FirewallRules_CreateOrUpdate.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "PatchSchedules_ListByRedisResource": {
+            "main": "./lib/actions/PatchSchedules_ListByRedisResource.js",
+            "title": "Gets all patch schedules in the specified redis cache (there is only one).",
+            "description": "Gets all patch schedules in the specified redis cache (there is only one).",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/PatchSchedules_ListByRedisResource.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Redis_Delete": {
+            "main": "./lib/actions/Redis_Delete.js",
+            "title": "Deletes a Redis cache.",
+            "description": "Deletes a Redis cache.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Redis_Delete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Redis_Get": {
+            "main": "./lib/actions/Redis_Get.js",
+            "title": "Gets a Redis cache (resource description).",
+            "description": "Gets a Redis cache (resource description).",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Redis_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Redis_Update": {
+            "main": "./lib/actions/Redis_Update.js",
+            "title": "Update an existing Redis cache.",
+            "description": "Update an existing Redis cache.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Redis_Update.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Redis_Create": {
+            "main": "./lib/actions/Redis_Create.js",
+            "title": "Create or replace (overwrite/recreate, with potential downtime) an existing Redis cache.",
+            "description": "Create or replace (overwrite/recreate, with potential downtime) an existing Redis cache.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Redis_Create.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Redis_ExportData": {
+            "main": "./lib/actions/Redis_ExportData.js",
+            "title": "Export data from the redis cache to blobs in a container.",
+            "description": "Export data from the redis cache to blobs in a container.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Redis_ExportData.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Redis_ForceReboot": {
+            "main": "./lib/actions/Redis_ForceReboot.js",
+            "title": "Reboot specified Redis node(s). This operation requires write permission to the cache resource. There can be potential data loss.",
+            "description": "Reboot specified Redis node(s). This operation requires write permission to the cache resource. There can be potential data loss.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Redis_ForceReboot.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Redis_ImportData": {
+            "main": "./lib/actions/Redis_ImportData.js",
+            "title": "Import data into Redis cache.",
+            "description": "Import data into Redis cache.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Redis_ImportData.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "LinkedServer_List": {
+            "main": "./lib/actions/LinkedServer_List.js",
+            "title": "Gets the list of linked servers associated with this redis cache (requires Premium SKU).",
+            "description": "Gets the list of linked servers associated with this redis cache (requires Premium SKU).",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/LinkedServer_List.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "LinkedServer_Delete": {
+            "main": "./lib/actions/LinkedServer_Delete.js",
+            "title": "Deletes the linked server from a redis cache (requires Premium SKU).",
+            "description": "Deletes the linked server from a redis cache (requires Premium SKU).",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/LinkedServer_Delete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "LinkedServer_Get": {
+            "main": "./lib/actions/LinkedServer_Get.js",
+            "title": "Gets the detailed information about a linked server of a redis cache (requires Premium SKU).",
+            "description": "Gets the detailed information about a linked server of a redis cache (requires Premium SKU).",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/LinkedServer_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "LinkedServer_Create": {
+            "main": "./lib/actions/LinkedServer_Create.js",
+            "title": "Adds a linked server to the Redis cache (requires Premium SKU).",
+            "description": "Adds a linked server to the Redis cache (requires Premium SKU).",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/LinkedServer_Create.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Redis_ListKeys": {
+            "main": "./lib/actions/Redis_ListKeys.js",
+            "title": "Retrieve a Redis cache's access keys. This operation requires write permission to the cache resource.",
+            "description": "Retrieve a Redis cache's access keys. This operation requires write permission to the cache resource.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Redis_ListKeys.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Redis_ListUpgradeNotifications": {
+            "main": "./lib/actions/Redis_ListUpgradeNotifications.js",
+            "title": "Gets any upgrade notifications for a Redis cache.",
+            "description": "Gets any upgrade notifications for a Redis cache.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Redis_ListUpgradeNotifications.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "PatchSchedules_Delete": {
+            "main": "./lib/actions/PatchSchedules_Delete.js",
+            "title": "Deletes the patching schedule of a redis cache (requires Premium SKU).",
+            "description": "Deletes the patching schedule of a redis cache (requires Premium SKU).",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/PatchSchedules_Delete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "PatchSchedules_Get": {
+            "main": "./lib/actions/PatchSchedules_Get.js",
+            "title": "Gets the patching schedule of a redis cache (requires Premium SKU).",
+            "description": "Gets the patching schedule of a redis cache (requires Premium SKU).",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/PatchSchedules_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "PatchSchedules_CreateOrUpdate": {
+            "main": "./lib/actions/PatchSchedules_CreateOrUpdate.js",
+            "title": "Create or replace the patching schedule for Redis cache (requires Premium SKU).",
+            "description": "Create or replace the patching schedule for Redis cache (requires Premium SKU).",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/PatchSchedules_CreateOrUpdate.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Redis_RegenerateKey": {
+            "main": "./lib/actions/Redis_RegenerateKey.js",
+            "title": "Regenerate Redis cache's access keys. This operation requires write permission to the cache resource.",
+            "description": "Regenerate Redis cache's access keys. This operation requires write permission to the cache resource.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Redis_RegenerateKey.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        }
+    }
+}

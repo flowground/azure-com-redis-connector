@@ -1,0 +1,159 @@
+{
+    "type": "object",
+    "properties": {
+        "resourceGroupName": {
+            "required": true,
+            "type": "string"
+        },
+        "name": {
+            "required": true,
+            "type": "string"
+        },
+        "subscriptionId": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "description": "Parameters supplied to the Create Redis operation.",
+            "properties": {
+                "location": {
+                    "description": "The geo-location where the resource lives",
+                    "type": "string",
+                    "x-ms-mutability": [
+                        "read",
+                        "create"
+                    ]
+                },
+                "properties": {
+                    "description": "Redis cache properties.",
+                    "x-ms-client-flatten": true,
+                    "allOf": [
+                        {
+                            "description": "Create/Update/Get common properties of the redis cache.",
+                            "properties": {
+                                "enableNonSslPort": {
+                                    "description": "Specifies whether the non-ssl Redis server port (6379) is enabled.",
+                                    "type": "boolean"
+                                },
+                                "minimumTlsVersion": {
+                                    "description": "Optional: requires clients to use a specified TLS version (or higher) to connect (e,g, '1.0', '1.1', '1.2')",
+                                    "enum": [
+                                        "1.0",
+                                        "1.1",
+                                        "1.2"
+                                    ],
+                                    "type": "string",
+                                    "x-ms-enum": {
+                                        "modelAsString": true,
+                                        "name": "TlsVersion"
+                                    }
+                                },
+                                "redisConfiguration": {
+                                    "additionalProperties": {
+                                        "type": "string"
+                                    },
+                                    "description": "All Redis Settings. Few possible keys: rdb-backup-enabled,rdb-storage-connection-string,rdb-backup-frequency,maxmemory-delta,maxmemory-policy,notify-keyspace-events,maxmemory-samples,slowlog-log-slower-than,slowlog-max-len,list-max-ziplist-entries,list-max-ziplist-value,hash-max-ziplist-entries,hash-max-ziplist-value,set-max-intset-entries,zset-max-ziplist-entries,zset-max-ziplist-value etc.",
+                                    "type": "object"
+                                },
+                                "shardCount": {
+                                    "description": "The number of shards to be created on a Premium Cluster Cache.",
+                                    "format": "int32",
+                                    "type": "integer"
+                                },
+                                "tenantSettings": {
+                                    "additionalProperties": {
+                                        "type": "string"
+                                    },
+                                    "description": "A dictionary of tenant settings",
+                                    "type": "object"
+                                }
+                            },
+                            "x-ms-external": true,
+                            "type": "object"
+                        }
+                    ],
+                    "properties": {
+                        "sku": {
+                            "description": "The SKU of the Redis cache to deploy.",
+                            "properties": {
+                                "capacity": {
+                                    "description": "The size of the Redis cache to deploy. Valid values: for C (Basic/Standard) family (0, 1, 2, 3, 4, 5, 6), for P (Premium) family (1, 2, 3, 4).",
+                                    "format": "int32",
+                                    "type": "integer"
+                                },
+                                "family": {
+                                    "description": "The SKU family to use. Valid values: (C, P). (C = Basic/Standard, P = Premium).",
+                                    "enum": [
+                                        "C",
+                                        "P"
+                                    ],
+                                    "type": "string",
+                                    "x-ms-enum": {
+                                        "modelAsString": true,
+                                        "name": "SkuFamily"
+                                    }
+                                },
+                                "name": {
+                                    "description": "The type of Redis cache to deploy. Valid values: (Basic, Standard, Premium)",
+                                    "enum": [
+                                        "Basic",
+                                        "Standard",
+                                        "Premium"
+                                    ],
+                                    "type": "string",
+                                    "x-ms-enum": {
+                                        "modelAsString": true,
+                                        "name": "SkuName"
+                                    }
+                                }
+                            },
+                            "required": [
+                                "name",
+                                "family",
+                                "capacity"
+                            ],
+                            "type": "object"
+                        },
+                        "staticIP": {
+                            "description": "Static IP address. Required when deploying a Redis cache inside an existing Azure Virtual Network.",
+                            "pattern": "^\\d+\\.\\d+\\.\\d+\\.\\d+$",
+                            "type": "string"
+                        },
+                        "subnetId": {
+                            "description": "The full resource ID of a subnet in a virtual network to deploy the Redis cache in. Example format: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/Microsoft.{Network|ClassicNetwork}/VirtualNetworks/vnet1/subnets/subnet1",
+                            "pattern": "^/subscriptions/[^/]*/resourceGroups/[^/]*/providers/Microsoft.(ClassicNetwork|Network)/virtualNetworks/[^/]*/subnets/[^/]*$",
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "sku"
+                    ],
+                    "x-ms-external": true
+                },
+                "tags": {
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Resource tags.",
+                    "type": "object"
+                },
+                "zones": {
+                    "description": "A list of availability zones denoting where the resource needs to come from.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                }
+            },
+            "required": [
+                "properties",
+                "location"
+            ],
+            "type": "object"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

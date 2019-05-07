@@ -1,0 +1,52 @@
+{
+    "type": "object",
+    "properties": {
+        "resourceGroupName": {
+            "required": true,
+            "type": "string"
+        },
+        "cacheName": {
+            "required": true,
+            "type": "string"
+        },
+        "ruleName": {
+            "required": true,
+            "type": "string"
+        },
+        "subscriptionId": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "description": "Parameters required for creating a firewall rule on redis cache.",
+            "properties": {
+                "properties": {
+                    "description": "Properties required to create a firewall rule .",
+                    "x-ms-client-flatten": true,
+                    "properties": {
+                        "endIP": {
+                            "description": "highest IP address included in the range",
+                            "type": "string"
+                        },
+                        "startIP": {
+                            "description": "lowest IP address included in the range",
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "startIP",
+                        "endIP"
+                    ]
+                }
+            },
+            "required": [
+                "properties"
+            ],
+            "type": "object"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

@@ -1,0 +1,41 @@
+{
+    "type": "object",
+    "properties": {
+        "resourceGroupName": {
+            "required": true,
+            "type": "string"
+        },
+        "name": {
+            "required": true,
+            "type": "string"
+        },
+        "subscriptionId": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "description": "Parameters for Redis import operation.",
+            "properties": {
+                "files": {
+                    "description": "files to import.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "format": {
+                    "description": "File format.",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "files"
+            ],
+            "type": "object"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

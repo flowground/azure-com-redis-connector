@@ -1,0 +1,31 @@
+{
+    "type": "object",
+    "properties": {
+        "subscriptionId": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "description": "Parameters body to pass for resource name availability check.",
+            "properties": {
+                "name": {
+                    "description": "Resource name.",
+                    "type": "string"
+                },
+                "type": {
+                    "description": "Resource type. The only legal value of this property for checking redis cache name availability is 'Microsoft.Cache/redis'.",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "name",
+                "type"
+            ],
+            "type": "object"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

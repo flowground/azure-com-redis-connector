@@ -1,0 +1,48 @@
+{
+    "type": "object",
+    "properties": {
+        "resourceGroupName": {
+            "required": true,
+            "type": "string"
+        },
+        "name": {
+            "required": true,
+            "type": "string"
+        },
+        "subscriptionId": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "description": "Specifies which Redis node(s) to reboot.",
+            "properties": {
+                "rebootType": {
+                    "description": "Which Redis node(s) to reboot. Depending on this value data loss is possible.",
+                    "enum": [
+                        "PrimaryNode",
+                        "SecondaryNode",
+                        "AllNodes"
+                    ],
+                    "type": "string",
+                    "x-ms-enum": {
+                        "modelAsString": true,
+                        "name": "RebootType"
+                    }
+                },
+                "shardId": {
+                    "description": "If clustering is enabled, the ID of the shard to be rebooted.",
+                    "format": "int32",
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "rebootType"
+            ],
+            "type": "object"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

@@ -1,0 +1,65 @@
+{
+    "type": "object",
+    "properties": {
+        "resourceGroupName": {
+            "required": true,
+            "type": "string"
+        },
+        "name": {
+            "required": true,
+            "type": "string"
+        },
+        "linkedServerName": {
+            "required": true,
+            "type": "string"
+        },
+        "subscriptionId": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "description": "Parameter required for creating a linked server to redis cache.",
+            "properties": {
+                "properties": {
+                    "description": "Properties required to create a linked server.",
+                    "x-ms-client-flatten": true,
+                    "properties": {
+                        "linkedRedisCacheId": {
+                            "description": "Fully qualified resourceId of the linked redis cache.",
+                            "type": "string"
+                        },
+                        "linkedRedisCacheLocation": {
+                            "description": "Location of the linked redis cache.",
+                            "type": "string"
+                        },
+                        "serverRole": {
+                            "description": "Role of the linked server.",
+                            "enum": [
+                                "Primary",
+                                "Secondary"
+                            ],
+                            "type": "string",
+                            "x-ms-enum": {
+                                "modelAsString": false,
+                                "name": "ReplicationRole"
+                            }
+                        }
+                    },
+                    "required": [
+                        "linkedRedisCacheId",
+                        "linkedRedisCacheLocation",
+                        "serverRole"
+                    ]
+                }
+            },
+            "required": [
+                "properties"
+            ],
+            "type": "object"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}
